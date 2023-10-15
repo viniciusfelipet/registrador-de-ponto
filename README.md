@@ -6,7 +6,7 @@
 
 ## Protótipo
 
-- Em breve...
+- https://www.figma.com/file/ZJRVDkFnjPtNVeyYSsTC3O/registrador-de-ponto?type=design&node-id=57%3A2262&mode=design&t=tILsEwtC0Bq9kDKF-1
 
 ## Checklist
 
