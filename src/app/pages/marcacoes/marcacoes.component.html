@@ -1,0 +1,10 @@
+<div class="list h100">
+    <div class="marcacao column-flex mat-elevation-z2" *ngFor="let m of marcacoes">
+        <span class="text-md-2"><span class="semi-bold">Dia:&nbsp;</span>{{ getDia(m) }}</span>
+        <span class="text-md-2"><span class="semi-bold">Horário:&nbsp;</span>{{ getHorario(m) }}</span>
+    </div>
+
+    <div class="empty mat-elevation-z2 text-center" *ngIf="marcacoes.length < 1">
+        <span class="text-md-2 semi-bold">Não há marcações a serem exibidas</span>
+    </div>
+</div>

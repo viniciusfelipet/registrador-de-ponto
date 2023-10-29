@@ -1,0 +1,23 @@
+$border-style: 1px solid #dddd;
+
+span {
+    border-top: $border-style;
+    border-bottom: $border-style;
+    margin-bottom: 0.3em;
+}
+
+.campos {
+    mat-form-field + mat-form-field {
+        margin-left: 0.5em;
+    }
+}
+
+button {
+    width: 15em;
+}
+
+@media (max-width: 660px) {
+    .periodo {
+        width: 100%;
+    }
+}
