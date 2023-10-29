@@ -6,8 +6,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Output() private onOpenMenu: EventEmitter<void> = new EventEmitter();
   @Input() isMobile!: boolean;
+  @Output() private onOpenMenu: EventEmitter<void> = new EventEmitter()
+  
   title: string = "";
 
   onClick() {
