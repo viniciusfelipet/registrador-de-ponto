@@ -1,0 +1,235 @@
+// Customizing Angular Material Theme
+@use '@angular/material' as mat;
+
+@import '@angular/material/theming';
+@import "./assets/variables.scss";
+
+@include mat.core();
+
+$custom-app-primary: mat.define-palette($rp-primary);
+$custom-app-accent: mat.define-palette($rp-secondary);
+$custom-app-warn: mat.define-palette($rp-warn);
+
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-app-primary,
+    accent: $custom-app-accent,
+    warn: $custom-app-warn,
+  ),
+));
+
+@include mat.all-component-themes($custom-theme);
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.medium {
+    font-weight: 500 !important;
+}
+
+.semi-bold {
+    font-weight: 600 !important;
+}
+
+// HELPERS
+ .w100 {
+    width: 100%;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.h50 {
+    height: 50%;
+}
+
+.flex-auto {
+    flex: 1 1 0;
+}
+
+.row-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.column-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-start {
+    text-align: start;
+}
+
+.text-end {
+    text-align: end;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+// FONT SIZE
+.text-xxs {
+    font-size: 0.7em !important;
+}
+
+.text-xs {
+    font-size: 0.8em !important;
+}
+
+.text-sm {
+    font-size: 0.85em !important;
+}
+
+.text-md {
+    font-size: 0.9em !important;
+}
+
+.text-md-2 {
+    font-size: 1em !important;
+}
+
+.text-md-3 {
+    font-size: 1.35em !important;
+}
+
+.text-md-4 {
+    font-size: 1.5em !important;
+}
+
+.text-lg {
+    font-size: 1.8em !important;
+}
+
+.text-xl {
+    font-size: 2.5em !important;
+}
+
+.text-xxl {
+    font-size: 3.4em !important;
+}
+
+.text-overflow {
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+}
+
+mat-icon {
+    height: auto !important;
+    width: auto !important;
+}
+
+span, label, mat-icon {
+    &[color="primary"] {
+        color: var(--primary-color) !important;
+    }
+    
+    &[color="secondary"] {
+        color: var(--secondary-color) !important;
+    }
+    
+    &[color="warn"] {
+        color: var(--warn-color) !important;
+    }
+    
+    &[color="success"] {
+        color: var(--success-color) !important;
+    }
+    
+    &[color="warning"] {
+        color: var(--warning-color) !important;
+    }
+}
+
+mat-snack-bar-container{
+    --mdc-snackbar-supporting-text-color: white !important;
+    
+    &.success {
+        --mdc-snackbar-container-color: var(--success-color) !important;
+    }
+
+    &.warning {
+        --mdc-snackbar-container-color: var(--warning-color) !important;
+    }
+}
+
+// Barra de rolagem
+::-webkit-scrollbar {
+    width: 14px;
+    background: transparent;
+  }
+  
+  // Barra de progresso
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  // Barra rolável
+  ::-webkit-scrollbar-thumb {
+    background-color: #aaaaaa;
+    border-radius: 8px;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+  }

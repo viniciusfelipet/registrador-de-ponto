@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <div class="row-flex justify-between align-center flex-auto">
+        <div>
+            <button mat-icon-button (click)="onClick()" *ngIf="isMobile">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+
+        <span>{{ title }}</span>
+    </div>
+</mat-toolbar>
