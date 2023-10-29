@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MatSidenav } from '@angular/material/sidenav';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 interface Nav {
   name: string;
@@ -34,37 +35,40 @@ export class AppComponent implements OnInit {
     }
   ]
   
-  navSelected: Nav;
-
-  @ViewChild('header') header!: HeaderComponent;
   @ViewChild(MatSidenav) sidenav!: MatSidenav
-
+  @ViewChild('header') header!: HeaderComponent;
+  
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.isMobile = window.innerWidth <= 660;
   }
 
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
     this.onResize();
-    this.navSelected = this.navs[0]
   }
   
   ngOnInit() {
     setTimeout(() => {
       this.setHeaderTitle()
+
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd)
+          this.setHeaderTitle()
+      });
     }, 100);
   }
 
-  onClickMenu(nav: Nav) {
+  onClickMenu() {
     if (this.isMobile) 
       this.sidenav.close();
-    
-    this.navSelected = nav;
-    this.setHeaderTitle()
   }
 
   setHeaderTitle() {
-    this.header.title = this.navSelected.name
-    document.title = this.header.title
+    const title = this.navs.find(f => f.route == this.router.url)?.name || ""
+    
+    this.header.title = title
+    document.title = title
   }
 }
