@@ -1,4 +1,4 @@
-<div class="column-flex align-center justify-center h100">
+<div class="column-flex align-center justify-center h100" [formGroup]="form">
     <!-- PERÍODO 1 -->
     <div class="periodo column-flex align-center">
         <span class="medium w100">Período 1</span>
@@ -6,13 +6,15 @@
             <mat-form-field appearance="fill">
                 <mat-icon color="success" matPrefix>call_made</mat-icon>
                 <mat-label>Entrada</mat-label>
-                <input matInput mask="Hh:m0">
+                <input matInput mask="Hh:m0" formControlName="entrada1">
+                <mat-error>{{ getErrorMessage('entrada1') }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-icon color="warn" matPrefix>call_received</mat-icon>
                 <mat-label>Saída</mat-label>
-                <input matInput mask="Hh:m0">
+                <input matInput mask="Hh:m0" formControlName="saida1">
+                <mat-error>{{ getErrorMessage('saida1') }}</mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -24,17 +26,19 @@
             <mat-form-field appearance="fill">
                 <mat-icon color="success" matPrefix>call_made</mat-icon>
                 <mat-label>Entrada</mat-label>
-                <input matInput mask="Hh:m0">
+                <input matInput mask="Hh:m0" formControlName="entrada2">
+                <mat-error>{{ getErrorMessage('entrada2') }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-icon color="warn" matPrefix>call_received</mat-icon>
                 <mat-label>Saída</mat-label>
-                <input matInput mask="Hh:m0">
+                <input matInput mask="Hh:m0" formControlName="saida2">
+                <mat-error>{{ getErrorMessage('saida2') }}</mat-error>
             </mat-form-field>
         </div>
     </div>
 
     <!-- BOTÃO SALVAR -->
-    <button mat-raised-button (click)="salvarJornada()" color="primary">SALVAR</button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="salvarJornada()">SALVAR</button>
 </div>

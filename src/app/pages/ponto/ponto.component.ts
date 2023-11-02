@@ -1,7 +1,9 @@
+import { MarcacoesService } from './../../core/services/marcacoes/marcacoes.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
+import { Marcacao } from 'src/app/core/models/marcacoes/marcacao.model';
 import { ConfirmDialog } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -16,7 +18,8 @@ export class PontoComponent implements OnInit, OnDestroy {
 
   constructor(
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private marcacoesService: MarcacoesService
   ) {
 
   }
@@ -42,12 +45,15 @@ export class PontoComponent implements OnInit, OnDestroy {
     );
 
     dialogRef.afterClosed().subscribe((confirmado: boolean) => {
-      if (confirmado)
-        this.snackBar.open(
-          "Ponto registrado com sucesso!",
-          undefined,
-          { panelClass: 'success' }
-        )
+      if (!confirmado) return;
+      
+      this.marcacoesService.salvarMarcacao({ dataHora: new Date() });
+
+      this.snackBar.open(
+        "Ponto registrado com sucesso!",
+        undefined,
+        { panelClass: 'success' }
+      )
     });
   }
 
