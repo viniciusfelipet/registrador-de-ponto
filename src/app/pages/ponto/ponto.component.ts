@@ -16,12 +16,16 @@ export class PontoComponent implements OnInit, OnDestroy {
   dataHoraAtual = new Date();
   timer: NodeJS.Timeout | undefined;
 
+  ultimaMarcacao = "--/--/---- --:--:--";
+
   constructor(
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private marcacoesService: MarcacoesService
   ) {
-
+    const ultimaMarcacao = this.marcacoesService.getUltimaMarcacao();
+    if (ultimaMarcacao)
+      this.setUltimaMarcacao(ultimaMarcacao)
   }
 
   ngOnInit() {
@@ -46,15 +50,23 @@ export class PontoComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((confirmado: boolean) => {
       if (!confirmado) return;
-      
-      this.marcacoesService.salvarMarcacao({ dataHora: new Date() });
 
-      this.snackBar.open(
-        "Ponto registrado com sucesso!",
-        undefined,
-        { panelClass: 'success' }
-      )
+      const dataHora = new Date()
+      this.marcacoesService.salvarMarcacao({ id: null, dataHora: dataHora })
+        .then(() => {
+          this.setUltimaMarcacao(dataHora)
+
+          this.snackBar.open(
+            "Ponto registrado com sucesso!",
+            undefined,
+            { panelClass: 'success' }
+          )
+        });
     });
+  }
+
+  setUltimaMarcacao(ultimaMarcacao: Date) {
+    this.ultimaMarcacao = moment(ultimaMarcacao).format("DD/MM/YYYY HH:mm:ss")
   }
 
   get diaSemanaEData() : string {

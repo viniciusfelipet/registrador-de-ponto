@@ -12,13 +12,18 @@ import { Subscription } from 'rxjs';
 export class FooterComponent implements OnInit {
 
   private subscriptions: Subscription[] = []
-  jornada: Jornada;
+  jornada: Jornada = new Jornada();
 
   constructor(
     private jornadaService: JornadaService
   ) {
-    this.jornada = jornadaService.getJornada()
-    this.formatarJornada()
+    this.jornadaService.getJornada()
+    .then(jornada => {
+      if (!jornada) return;
+      
+      this.jornada = jornada;
+      this.formatarJornada()
+    })
   }
 
   ngOnInit() {
@@ -32,12 +37,7 @@ export class FooterComponent implements OnInit {
 
   formatarJornada() {
     if (!this.jornada) {
-      this.jornada = {
-        entrada1: "--:--",
-        saida1: "--:--",
-        entrada2: "--:--",
-        saida2: "--:--"
-      }
+      this.jornada = new Jornada()
     } else {
       this.jornada.entrada1 = moment(this.jornada.entrada1, "HHmm").format("HH:mm")
       this.jornada.saida1 = moment(this.jornada.saida1, "HHmm").format("HH:mm")

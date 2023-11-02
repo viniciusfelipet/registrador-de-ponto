@@ -29,14 +29,15 @@ export class JornadaComponent implements OnInit {
   }
 
   ngOnInit() {
-    const jornada = this.jornadaService.getJornada()
-
-    if (jornada) {
-      this.form.get('entrada1')?.setValue(jornada.entrada1)
-      this.form.get('saida1')?.setValue(jornada.saida1)
-      this.form.get('entrada2')?.setValue(jornada.entrada2)
-      this.form.get('saida2')?.setValue(jornada.saida2)
-    }
+    this.jornadaService.getJornada()
+      .then(jornada => {
+        if (!jornada) return;
+        
+        this.form.get('entrada1')?.setValue(jornada.entrada1)
+        this.form.get('saida1')?.setValue(jornada.saida1)
+        this.form.get('entrada2')?.setValue(jornada.entrada2)
+        this.form.get('saida2')?.setValue(jornada.saida2)
+      })
   }
 
   salvarJornada() {
@@ -53,14 +54,13 @@ export class JornadaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmado: boolean) => {
       if (!confirmado) return;
-      
-      this.jornadaService.salvarJornada(this.form.value)
 
-      this.snackBar.open(
-        "Jornada salva com sucesso!",
-        undefined,
-        { panelClass: 'success' }
-      )
+      this.jornadaService.salvarJornada(this.form.value)
+        .then(() => this.snackBar.open(
+          "Jornada salva com sucesso!",
+          undefined,
+          { panelClass: 'success' }
+        ))
     });
   }
 

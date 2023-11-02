@@ -1,24 +1,28 @@
-import { Subject } from 'rxjs';
+import { Subject, lastValueFrom } from 'rxjs';
 import { Jornada } from './../../models/jornada/jornada.model';
-import { Injectable, EventEmitter } from '@angular/core';
-
-const JORNADA_KEY = 'jornada-key';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JornadaService {
 
+  // 12
   changeJornada: Subject<Jornada> = new Subject()
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getJornada() {
-    return JSON.parse(localStorage.getItem(JORNADA_KEY)!) as Jornada;
+    return lastValueFrom(this.http.get<Jornada>(`${environment.JSON_SERVER_URL}/jornada`))
   }
 
   salvarJornada(jornada: Jornada) {
-    localStorage.setItem(JORNADA_KEY, JSON.stringify(jornada));
-    this.changeJornada.next(jornada);
+    return lastValueFrom(this.http.post<void>(`${environment.JSON_SERVER_URL}/jornada`, jornada))
+      .then(() => {
+        this.changeJornada.next(jornada)
+        return Promise.resolve();
+      })
   }
 }
