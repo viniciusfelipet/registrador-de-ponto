@@ -7,5 +7,8 @@
     </div>
 
     <!-- BOTÃO REGISTRAR -->
-    <button mat-raised-button (click)="registrarPonto()" color="primary">REGISTRAR</button>
+    <div class="column-flex justify-between align-center">
+        <button mat-raised-button (click)="registrarPonto()" color="primary">REGISTRAR</button>
+        <span class="text-xxs" style="margin-top: 0.5em;">Último registro: {{ ultimaMarcacao }}</span>
+    </div>
 </div>

@@ -1,0 +1,14 @@
+{
+  "marcacoes": [
+    {
+      "id": 1,
+      "dataHora": "2023-11-02T19:39:04.949Z"
+    }
+  ],
+  "jornada": {
+    "entrada1": "0800",
+    "saida1": "1200",
+    "entrada2": "1300",
+    "saida2": "1730"
+  }
+}

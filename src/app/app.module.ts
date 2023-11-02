@@ -8,6 +8,7 @@ import { MarcacoesComponent } from './pages/marcacoes/marcacoes.component';
 import { JornadaComponent } from './pages/jornada/jornada.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
