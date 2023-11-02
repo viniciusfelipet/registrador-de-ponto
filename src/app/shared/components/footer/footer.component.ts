@@ -1,3 +1,4 @@
+import { MessageService } from './../../../core/services/message/message.service';
 import { JornadaService } from './../../../core/services/jornada/jornada.service';
 import { Jornada } from './../../../core/models/jornada/jornada.model';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,8 @@ export class FooterComponent implements OnInit {
   jornada: Jornada = new Jornada();
 
   constructor(
-    private jornadaService: JornadaService
+    private jornadaService: JornadaService,
+    private messageService: MessageService
   ) {
     this.jornadaService.getJornada()
     .then(jornada => {

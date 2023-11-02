@@ -1,8 +1,8 @@
 <div class="list h100">
     <div class="marcacao row-flex justify-between mat-elevation-z2" *ngFor="let m of marcacoes">
         <div class="column-flex">
-            <span class="text-md-2"><span class="semi-bold">Dia:&nbsp;</span>{{ getDia(m) }}</span>
-            <span class="text-md-2"><span class="semi-bold">Horário:&nbsp;</span>{{ getHorario(m) }}</span>
+            <span class="text-md-2"><span class="semi-bold">Dia:&nbsp;</span>{{ m.dataHora | date: 'EEEE - dd/MM/yyyy' | titlecase }}</span>
+            <span class="text-md-2"><span class="semi-bold">Horário:&nbsp;</span>{{ m.dataHora | date: 'HH:mm' }}</span>
         </div>
     
         <button mat-raised-button color="warn" (click)="onRemoverMarcacao(m)" style="min-width: unset;">
