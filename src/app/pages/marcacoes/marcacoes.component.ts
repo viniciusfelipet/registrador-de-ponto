@@ -1,10 +1,10 @@
 import { MatDialog } from '@angular/material/dialog';
 import { MarcacoesService } from './../../core/services/marcacoes/marcacoes.service';
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import * as moment from 'moment';
 import { Marcacao } from 'src/app/core/models/marcacoes/marcacao.model';
 import { ConfirmDialog } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { MessageService } from 'src/app/core/services/message/message.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-marcacoes',
@@ -17,24 +17,22 @@ export class MarcacoesComponent implements OnInit {
 
   constructor(
     private marcacoesService: MarcacoesService,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private messageService: MessageService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.getMarcacoes();
   }
 
-  getMarcacoes() {
-    this.marcacoesService.getMarcacoes().then(list => this.marcacoes = list);
-  }
+  async getMarcacoes() {
+    await this.spinner.show()
 
-  getDia(marcacao: Marcacao) {
-    return moment(marcacao.dataHora).format("dddd - DD/MM/YYYY")
-  }
-
-  getHorario(marcacao: Marcacao) {
-    return moment(marcacao.dataHora).format("HH:mm")
+    this.marcacoesService.getMarcacoes()
+     .then(list => this.marcacoes = list)
+     .catch((error) => this.messageService.warning(error))
+     .finally(() => this.spinner.hide())
   }
 
   onRemoverMarcacao(marcacao: Marcacao) {
@@ -56,16 +54,21 @@ export class MarcacoesComponent implements OnInit {
     })
   }
 
-  private removerMarcacao(marcacao: Marcacao) {
+  private async removerMarcacao(marcacao: Marcacao) {
+    await this.spinner.show()
+
     this.marcacoesService.removerMarcacao(marcacao)
-      .then(() => { 
-        this.getMarcacoes();
-        this.snackBar.open(
-          "Ponto removido com sucesso!",
-          undefined,
-          { panelClass: 'success' }
-        )
-       })
+      .subscribe({
+        next: () => {
+          this.getMarcacoes();
+          this.messageService.success("Ponto removido com sucesso!")
+          this.spinner.hide()
+        },
+        error: async (error) => {
+          await this.spinner.hide()
+          this.messageService.warning(error)
+        },
+      })
   }
 
 }

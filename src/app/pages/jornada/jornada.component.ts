@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'src/app/core/services/message/message.service';
 import { ConfirmDialog } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -15,10 +17,11 @@ export class JornadaComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    private snackBar: MatSnackBar,
+    private messageService: MessageService,
     private dialog: MatDialog,
     private fb: FormBuilder,
-    private jornadaService: JornadaService
+    private jornadaService: JornadaService,
+    private spinner: NgxSpinnerService
   ) {
     this.form = this.fb.group({
       entrada1: ["", [Validators.required, this.validateHorario]],
@@ -28,7 +31,9 @@ export class JornadaComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.spinner.show();
+
     this.jornadaService.getJornada()
       .then(jornada => {
         if (!jornada) return;
@@ -38,6 +43,8 @@ export class JornadaComponent implements OnInit {
         this.form.get('entrada2')?.setValue(jornada.entrada2)
         this.form.get('saida2')?.setValue(jornada.saida2)
       })
+      .catch((error) => this.messageService.warning(error))
+      .finally(() => this.spinner.hide())
   }
 
   salvarJornada() {
@@ -52,15 +59,14 @@ export class JornadaComponent implements OnInit {
       }
     );
 
-    dialogRef.afterClosed().subscribe((confirmado: boolean) => {
+    dialogRef.afterClosed().subscribe(async (confirmado: boolean) => {
       if (!confirmado) return;
 
+      await this.spinner.show();
       this.jornadaService.salvarJornada(this.form.value)
-        .then(() => this.snackBar.open(
-          "Jornada salva com sucesso!",
-          undefined,
-          { panelClass: 'success' }
-        ))
+        .then(() => this.messageService.success("Jornada salva com sucesso!"))
+        .catch((error) => this.messageService.warning(error))
+        .finally(() => this.spinner.hide())
     });
   }
 

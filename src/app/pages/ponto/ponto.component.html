@@ -1,9 +1,9 @@
 <div class="column-flex align-center justify-center h100">
     <!-- RELÓGIO -->
     <div class="column-flex relogio align-center text-md-3">
-        <span class="medium text-sm" color="secondary">{{ diaSemanaEData }}</span>
-        <span class="semi-bold text-xl" color="primary">{{ horaMinuto }}</span>
-        <span class="medium text-md-2" color="secondary">{{ segundos }}</span>
+        <span class="medium text-sm" color="secondary">{{ dataHoraAtual | date: 'EEEE | dd/MM/yyyy' | titlecase }}</span>
+        <span class="semi-bold text-xl" color="primary">{{ dataHoraAtual | date: 'HH:mm' }}</span>
+        <span class="medium text-md-2" color="secondary">{{ dataHoraAtual | date: 'ss' }}</span>
     </div>
 
     <!-- BOTÃO REGISTRAR -->
