@@ -1,9 +1,6 @@
 export interface Jornada {
-    periodo1: Periodo;
-    periodo2: Periodo;
-}
-
-export interface Periodo {
-    entrada: string;
-    saida: string;
+    entrada1: string;
+    saida1: string;
+    entrada2: string;
+    saida2: string;
 }

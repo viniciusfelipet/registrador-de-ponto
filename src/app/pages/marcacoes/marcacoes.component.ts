@@ -1,3 +1,4 @@
+import { MarcacoesService } from './../../core/services/marcacoes/marcacoes.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Marcacao } from 'src/app/core/models/marcacoes/marcacao.model';
@@ -12,17 +13,13 @@ export class MarcacoesComponent implements OnInit {
   marcacoes: Marcacao[] = [];
 
   constructor(
-
+    private marcacoesService: MarcacoesService
   ) {
-
+    this.marcacoes = this.marcacoesService.getMarcacoes();
   }
 
   ngOnInit() {
-    /*this.marcacoes = [
-      { dataHora: new Date(2023, 9, 27, 8, 0) },
-      { dataHora: new Date(2023, 9, 27, 12, 0) },
-      { dataHora: new Date(2023, 9, 27, 13, 0) },
-    ];*/
+
   }
 
   getDia(marcacao: Marcacao) {

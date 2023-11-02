@@ -20,13 +20,13 @@
 - [ ] Transferir dados, por meio de serviços, entre componentes que não estão diretamente relacionados.
 - [x] Mapear os componentes às rotas no módulo de rotas, criando uma estrutura de navegação eficiente.
 - [x] Permitir a navegação fluida entre as diferentes páginas do aplicativo por meio de links e botões de navegação.
-- [ ] Validar os campos do formulário com expressões regulares (REGEX) e apresentar as mensagens de erro.
+- [x] Validar os campos do formulário com expressões regulares (REGEX) e apresentar as mensagens de erro.
 - [x] Implementar máscaras em campos de formulário, quando necessário, para melhorar a experiência do usuário ao inserir dados.
-- [ ] Desabilitar o botão de envio (submit) enquanto o formulário estiver em um estado inválido.
+- [x] Desabilitar o botão de envio (submit) enquanto o formulário estiver em um estado inválido.
 - [ ] Realizar requisições à API com tratamento adequado das respostas de sucesso e erro com Promises.
 - [ ] Realizar requisições à API com tratamento adequado das respostas de sucesso e erro com Observables.
 - [ ] Criar o cadastro completo de uma entidade, incluindo operações de criação, leitura, atualização e exclusão (CRUD) utilizando uma API, como o JSON Server.
-- [ ] Utilizar o armazenamento local (LocalStorage ou SessionStorage) para armazenar dados temporários, quando necessário.
+- [x] Utilizar o armazenamento local (LocalStorage ou SessionStorage) para armazenar dados temporários, quando necessário.
 - [x] Aplicar a diretiva estrutural ngFor para apresentar uma lista dinâmica de dados em seu aplicativo.
 - [x] Utilizar a diretiva ngIf para controlar a exibição ou ocultação de elementos com base em condições específicas.
 - [ ] Formatar a apresentação de dados com Pipes, de acordo com os requisitos do aplicativo.
