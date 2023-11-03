@@ -2,7 +2,7 @@
 
 ## Endereço de Deploy - GitHub Pages
 
-- https://viniciusfelipet.github.io/registrador-de-ponto/marcacoes
+- https://viniciusfelipet.github.io/registrador-de-ponto
 
 ## Protótipo
 
