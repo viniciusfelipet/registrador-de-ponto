@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href=/registrador-de-ponto/",
+    "ghpages": "angular-cli-ghpages --dir=dist/registrador-de-ponto",
+    "deploy": "npm run build & npm run ghpages",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "json:server": "json-server --watch db.json"
@@ -21,6 +23,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "angular-cli-ghpages": "^1.0.7",
     "json-server": "^0.17.4",
     "moment": "^2.29.4",
     "ngx-mask": "^16.3.9",

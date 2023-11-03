@@ -2,7 +2,7 @@
 
 ## Endereço de Deploy - GitHub Pages
 
-- Em breve...
+- https://viniciusfelipet.github.io/registrador-de-ponto/marcacoes
 
 ## Protótipo
 
@@ -30,4 +30,4 @@
 - [x] Aplicar a diretiva estrutural ngFor para apresentar uma lista dinâmica de dados em seu aplicativo.
 - [x] Utilizar a diretiva ngIf para controlar a exibição ou ocultação de elementos com base em condições específicas.
 - [x] Formatar a apresentação de dados com Pipes, de acordo com os requisitos do aplicativo.
-- [ ] Executar o processo de build da aplicação e realizar o deploy para tornar o aplicativo acessível online.
+- [x] Executar o processo de build da aplicação e realizar o deploy para tornar o aplicativo acessível online.
