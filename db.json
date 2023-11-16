@@ -1,0 +1,9 @@
+{
+  "marcacoes": [ ],
+  "jornada": {
+    "entrada1": "0800",
+    "saida1": "1200",
+    "entrada2": "1300",
+    "saida2": "1700"
+  }
+}

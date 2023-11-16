@@ -1,0 +1,16 @@
+<div class="list h100">
+    <div class="marcacao row-flex justify-between mat-elevation-z2" *ngFor="let m of marcacoes">
+        <div class="column-flex">
+            <span class="text-md-2"><span class="semi-bold">Dia:&nbsp;</span>{{ m.dataHora | date: 'EEEE - dd/MM/yyyy' | titlecase }}</span>
+            <span class="text-md-2"><span class="semi-bold">Horário:&nbsp;</span>{{ m.dataHora | date: 'HH:mm' }}</span>
+        </div>
+    
+        <button mat-raised-button color="warn" (click)="onRemoverMarcacao(m)" style="min-width: unset;">
+            <mat-icon style="margin: 0">delete</mat-icon>
+        </button>
+    </div>
+
+    <div class="empty mat-elevation-z2 text-center" *ngIf="marcacoes.length < 1">
+        <span class="text-md-2 semi-bold">Não há marcações a serem exibidas</span>
+    </div>
+</div>

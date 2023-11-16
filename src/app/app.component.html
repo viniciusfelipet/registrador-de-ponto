@@ -1,0 +1,30 @@
+<app-header (onOpenMenu)="snav.toggle()" [isMobile]="isMobile" #header></app-header>
+
+<mat-sidenav-container [ngClass]="{'is-mobile': isMobile}">
+    <mat-sidenav #snav [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true"
+        [disableClose]="isMobile ? false : true">
+        <mat-nav-list>
+            <a mat-list-item class="mat-elevation-z2" [routerLink]="nav.route" *ngFor="let nav of navs" (click)="onClickMenu()">
+                <div class="nav-content">
+                    <div class="row-flex">
+                        <mat-icon color="primary">{{nav.icon}}</mat-icon>
+                        <span class="semi-bold">{{nav.name}}</span>
+                    </div>
+                </div>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="container">
+            <mat-card class="content">
+                <router-outlet></router-outlet>
+            </mat-card>
+    
+            <app-footer></app-footer>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ngx-spinner></ngx-spinner>

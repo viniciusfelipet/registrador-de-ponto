@@ -1,0 +1,21 @@
+.list {
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.marcacao, .empty {
+    padding: 0.5em 0.8em;
+    border-radius: 5px;
+}
+
+.marcacao {
+    background: rgba(63, 81, 181, 0.30);
+    
+    &:not(:last-of-type) {
+        margin-bottom: 1em;
+    }
+}
+
+.empty {
+    background: rgba(177, 177, 177, 0.60);
+}

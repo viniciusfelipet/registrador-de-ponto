@@ -1,0 +1,14 @@
+<div class="column-flex align-center justify-center h100">
+    <!-- RELÓGIO -->
+    <div class="column-flex relogio align-center text-md-3">
+        <span class="medium text-sm" color="secondary">{{ dataHoraAtual | date: 'EEEE | dd/MM/yyyy' | titlecase }}</span>
+        <span class="semi-bold text-xl" color="primary">{{ dataHoraAtual | date: 'HH:mm' }}</span>
+        <span class="medium text-md-2" color="secondary">{{ dataHoraAtual | date: 'ss' }}</span>
+    </div>
+
+    <!-- BOTÃO REGISTRAR -->
+    <div class="column-flex justify-between align-center">
+        <button mat-raised-button (click)="registrarPonto()" color="primary">REGISTRAR</button>
+        <span class="text-xxs" style="margin-top: 0.5em;">Último registro: {{ ultimaMarcacao }}</span>
+    </div>
+</div>
