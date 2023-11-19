@@ -8,6 +8,10 @@
 
 - https://www.figma.com/file/ZJRVDkFnjPtNVeyYSsTC3O/registrador-de-ponto?type=design&node-id=57%3A2262&mode=design&t=tILsEwtC0Bq9kDKF-1
 
+## Apresentação
+
+- https://drive.google.com/file/d/16dDhjT3sI-tl-Rdyo9mj-zii4syW7bFd/view?usp=sharing
+
 ## Checklist
 
 - [x] Criar um repositório no GitHub com a estrutura do Gitflow, incluindo pelo menos as branches principais "main" e "develop."
